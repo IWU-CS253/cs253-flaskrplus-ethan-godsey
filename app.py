@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-    Flaskr
+    Flaskr Plus
     ~~~~~~
 
     A microblog example application written as Flask tutorial with
@@ -8,6 +8,8 @@
 
     :copyright: (c) 2015 by Armin Ronacher.
     :license: BSD, see LICENSE for more details.
+
+    Author: Ethan Godsey
 """
 
 import os
