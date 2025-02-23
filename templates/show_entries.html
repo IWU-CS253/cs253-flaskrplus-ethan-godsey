@@ -14,6 +14,8 @@
     </dl>
   </form>
 
+<!-- Add a form for the filter dropdown menu. It is supposed
+to get from the lst_cats list, but does not.-->
   <form action="{{ url_for('show') }}" method="post">
       <select id="filter" name="category">
           <option disabled selected>Filter Posts</option>
@@ -24,6 +26,7 @@
   </select>
   </form>
 
+<!-- added category here in h4 tag-->
   <ul class="entries">
   {% for entry in entries %}
     <li><h2>{{ entry.title }}</h2><h4>{{ entry.category }}</h4>{{ entry.text|safe }}</li>
