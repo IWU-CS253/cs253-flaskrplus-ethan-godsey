@@ -82,3 +82,27 @@ def add_entry():
     db.commit()
     flash('New entry was successfully posted')
     return redirect(url_for('show_entries'))
+
+@app.route('/show', methods=['POST'])
+def show():
+    db = get_db()
+    selected = request.form.get('category', 'All')
+
+    if selected == 'All':
+        cats = db.execute('SELECT title, text, category FROM entries')
+    else:
+        cats = db.execute('SELECT title, text, category FROM entries WHERE category = ?', (selected,))
+
+    entries = cats.fetchall()
+
+    lst_cats = db.execute('SELECT DISTINCT category FROM entries').fetchall()
+
+    return render_template('show_entries.html', lst_cats=lst_cats, entries=entries)
+
+@app.route('/delete', methods=['POST'])
+def delete_post():
+   title = request.form["title"]
+   db = get_db()
+   db.execute('DELETE FROM entries WHERE title = ?', (title,))
+   db.commit()
+   return redirect(url_for('show_entries'))

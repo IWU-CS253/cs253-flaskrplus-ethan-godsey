@@ -1,6 +1,7 @@
 {% extends "layout.html" %}
 {% block body %}
     <script src="/static/flaskr.js"></script>
+
   <form action="{{ url_for('add_entry') }}" method="post" class="add-entry">
     <dl>
       <dt>Title:
@@ -11,19 +12,24 @@
       <dd><textarea name="text" rows="5" cols="40"></textarea>
       <dd><input type="submit" value="Share">
     </dl>
-  <select id="filter" onchange="filterPost()">
-      <option disabled selected>Filter Posts</option>
-      <option value="All">All</option>
-      {% for post in entries %}
-          {% if post.category not in entries %}
-            <option value="{{ post.category }}">{{ post.category }}</option>
-          {% endif %}
+  </form>
+
+  <form action="{{ url_for('show') }}" method="post">
+      <select id="filter" name="category">
+          <option disabled selected>Filter Posts</option>
+          <option value="All">All</option>
+          {% for post in lst_cats %}
+                <option value="{{ post.category }}">{{ post.category }}</option>
       {% endfor %}
   </select>
   </form>
+
   <ul class="entries">
   {% for entry in entries %}
     <li><h2>{{ entry.title }}</h2><h4>{{ entry.category }}</h4>{{ entry.text|safe }}</li>
+      <form action="{{ url_for('delete_post') }}" method="post" style="display: inline">
+          <input type="hidden" name="title" value="{{ entry.title }}">
+          <input type="submit" value="delete"></form>
   {% else %}
     <li><em>Unbelievable.  No entries here so far</em></li>
   {% endfor %}
