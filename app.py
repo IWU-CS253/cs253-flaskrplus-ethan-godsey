@@ -86,23 +86,34 @@ def add_entry():
 @app.route('/show', methods=['POST'])
 def show():
     db = get_db()
+
+    # get the category selected in the dropdown
     selected = request.form.get('category', 'All')
 
+    # if it is the All, show all posts
     if selected == 'All':
         cats = db.execute('SELECT title, text, category FROM entries')
+
+    # otherwise show posts with specific category
     else:
         cats = db.execute('SELECT title, text, category FROM entries WHERE category = ?', (selected,))
 
+
     entries = cats.fetchall()
 
+    # for some reason this is not passing over, I couldn't figure out why.
+    # there is a working java filter in a previous version of my code
     lst_cats = db.execute('SELECT DISTINCT category FROM entries').fetchall()
 
     return render_template('show_entries.html', lst_cats=lst_cats, entries=entries)
 
 @app.route('/delete', methods=['POST'])
 def delete_post():
+    # post the title of the entry deleted
    title = request.form["title"]
    db = get_db()
+
+    # delete the row from the table, referencing the saved hidden attr
    db.execute('DELETE FROM entries WHERE title = ?', (title,))
    db.commit()
    return redirect(url_for('show_entries'))

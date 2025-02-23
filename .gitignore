@@ -1,0 +1,9 @@
+#ignore all pyc files
+*.pyc
+
+#ignore my database
+flaskr.db
+
+#ignore the .idea and pycache folder
+.idea/
+pycache/
