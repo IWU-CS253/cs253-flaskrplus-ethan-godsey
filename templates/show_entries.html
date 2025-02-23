@@ -1,5 +1,6 @@
 {% extends "layout.html" %}
 {% block body %}
+    <script src="/static/flaskr.js"></script>
   <form action="{{ url_for('add_entry') }}" method="post" class="add-entry">
     <dl>
       <dt>Title:
@@ -10,6 +11,15 @@
       <dd><textarea name="text" rows="5" cols="40"></textarea>
       <dd><input type="submit" value="Share">
     </dl>
+  <select id="filter" onchange="filterPost()">
+      <option disabled selected>Filter Posts</option>
+      <option value="All">All</option>
+      {% for post in entries %}
+          {% if post.category not in entries %}
+            <option value="{{ post.category }}">{{ post.category }}</option>
+          {% endif %}
+      {% endfor %}
+  </select>
   </form>
   <ul class="entries">
   {% for entry in entries %}
