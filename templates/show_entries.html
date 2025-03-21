@@ -22,8 +22,9 @@ to get from the lst_cats list, but does not.-->
           <option value="All">All</option>
           {% for post in lst_cats %}
                 <option value="{{ post.category }}">{{ post.category }}</option>
-      {% endfor %}
+            {% endfor %}
   </select>
+  <button type="submit">Filter</button>
   </form>
 
 <!-- added category here in h4 tag-->
