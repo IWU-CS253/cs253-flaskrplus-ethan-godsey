@@ -37,7 +37,12 @@ to get from the lst_cats list, but does not.-->
       </form>
 
       <form action="{{ url_for('edit_post') }}" method="post" style="display: inline">
-          <input type="hidden" name="title" value="{{ entry.title }}">
+          <input type="hidden" name="old_title" value="{{ entry.title }}">
+
+          <input type="text" name="new_title" value="{{ entry.title }}">
+          <input type="text" name="new_text" value="{{ entry.text }}">
+          <input type="text" name="new_category" value="{{ entry.category }}">
+
           <input type="submit" value="edit">
       </form>
   {% else %}

@@ -122,4 +122,12 @@ def delete_post():
 
 @app.route('/edit', methods=['POST'])
 def edit_post():
-
+    db = get_db()
+    old_title = request.form.get('old_title')
+    new_title = request.form.get('new_title')
+    new_text = request.form.get('new_text')
+    new_category = request.form.get('new_category')
+    db.execute('UPDATE entries SET title = ?, text = ?, category = ? WHERE title = ?',
+               (new_title, new_text, new_category, old_title))
+    db.commit()
+    return redirect(url_for('show_entries'))
