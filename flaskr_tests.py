@@ -33,7 +33,7 @@ class FlaskrTestCase(unittest.TestCase):
 
     def test_edit_post(self):
         rv = self.app.post('/edit', data=dict(
-            old_title = ,
+            old_title = "Old title",
             new_title = "New Title",
             old_text = "Old text",
             new_text = "New text",
