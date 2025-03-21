@@ -31,5 +31,22 @@ class FlaskrTestCase(unittest.TestCase):
         assert b'<strong>HTML</strong> allowed here' in rv.data
         assert b'A category' in rv.data
 
+    def test_edit_post(self):
+        rv = self.app.post('/edit', data=dict(
+            old_title = "Old Title",
+            new_title = "New Title",
+            old_text = "Old text",
+            new_text = "New text",
+            old_category = "Old category",
+            new_category = "New category"
+        ), follow_redirects = True)
+
+        assert old_title not in rv.data
+        assert old_text not in rv.data
+        assert old_category not in rv.data
+        assert new_title in rv.data
+        assert new_text in rv.data
+        assert new_category in rv.data
+
 if __name__ == '__main__':
     unittest.main()

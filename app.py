@@ -122,4 +122,4 @@ def delete_post():
 
 @app.route('/edit', methods=['POST'])
 def edit_post():
-    return render_template("show_entries.html")
+
