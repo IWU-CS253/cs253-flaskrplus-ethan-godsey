@@ -33,7 +33,7 @@ class FlaskrTestCase(unittest.TestCase):
 
     def test_share_post(self):
         rv = self.app.post('/add', data=dict(
-            title = "Test title",
+            title = "Test Title",
             category = "Test Category",
             text = "Test Text"
         ), follow_redirects=True)
