@@ -43,6 +43,7 @@ class FlaskrTestCase(unittest.TestCase):
         assert b'Test Text' in rv.data
 
     def test_edit_post(self):
+
         rv = self.app.post('/edit', data=dict(
             old_title = "Old title",
             new_title = "New Title",
@@ -51,7 +52,7 @@ class FlaskrTestCase(unittest.TestCase):
             old_category = "Old category",
             new_category = "New category"
         ), follow_redirects = True)
-
+        rv = self.app.get('/', follow_redirects = True)
         assert b"Old title" not in rv.data
         assert b"Old text" not in rv.data
         assert b"Old category" not in rv.data
