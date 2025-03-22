@@ -18,25 +18,25 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Python tests.Python tests for flaskr_tests.FlaskrTestCase.executor": "Run",
-    "Python tests.Unittests in /.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "last_opened_file_path": "/Users/ethangodsey/Desktop/SoftwareDevGit/cs253-flaskrplus-ethan-godsey",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Python tests.Python tests for flaskr_tests.FlaskrTestCase.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Unittests in /.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/ethangodsey/Desktop/SoftwareDevGit/cs253-flaskrplus-ethan-godsey&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "sqlite"
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;sqlite&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RunManager" selected="Python tests.Python tests for flaskr_tests.FlaskrTestCase">
     <configuration name="cs253-flaskrplus-ethan-godsey" type="PythonConfigurationType" factoryName="Python">
       <module name="cs253-flaskrplus-ethan-godsey" />
@@ -97,8 +97,8 @@
     </configuration>
     <list>
       <item itemvalue="Python.cs253-flaskrplus-ethan-godsey" />
-      <item itemvalue="Python tests.Unittests in /" />
       <item itemvalue="Python tests.Python tests for flaskr_tests.FlaskrTestCase" />
+      <item itemvalue="Python tests.Unittests in /" />
     </list>
     <recent_temporary>
       <list>
@@ -126,6 +126,7 @@
       <workItem from="1740412718260" duration="2227000" />
       <workItem from="1742342240594" duration="259000" />
       <workItem from="1742344822825" duration="3025000" />
+      <workItem from="1742565894370" duration="138000" />
     </task>
     <servers />
   </component>
