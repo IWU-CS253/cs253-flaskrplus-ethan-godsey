@@ -60,5 +60,41 @@ class FlaskrTestCase(unittest.TestCase):
         assert b"New text" in rv.data
         assert b"New category" in rv.data
 
+    def test_delete_post(self):
+        self.app.post('/add', data=dict(
+            title = "Post to Delete",
+            category = "Expendable",
+            text = "This will be deleted"
+        ), follow_redirects = True)
+
+        rv = self.app.post('/delete', data=dict(
+            title= b"Post to Delete"
+        ), follow_redirects = True)
+
+        assert b"Post to Delete" not in rv.data
+        assert b"Expendable" not in rv.data
+
+    def test_filter_post(self):
+        self.app.post('/add', data=dict(
+            title = "Post to Filter 1",
+            category = "A",
+            text = "This will be filtered 1"
+        ), follow_redirects = True)
+
+        self.app.post('/add', data=dict(
+            title = "Post to Filter 2",
+            category = "B",
+            text = "This will be filtered 2"
+        ), follow_redirects = True)
+
+        rv = self.app.post('/show', data=dict(
+            category = "A"
+        ), follow_redirects = True)
+
+        assert b"Post to Filter 1" in rv.data
+        assert b"A" in rv.data
+        assert b"This will be filtered 1" in rv.data
+        assert b"Post to Filter 2" not in rv.data
+
 if __name__ == '__main__':
     unittest.main()
