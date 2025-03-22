@@ -69,7 +69,7 @@ def close_db(error):
 @app.route('/')
 def show_entries():
     db = get_db()
-    cur = db.execute('select title, text, category from entries order by id desc')
+    cur = db.execute('SELECT id, title, text, category FROM entries ORDER BY id DESC')
     entries = cur.fetchall()
 
     lst_cats = db.execute('SELECT DISTINCT category FROM entries').fetchall()
@@ -94,11 +94,11 @@ def show():
 
     # if it is the All, show all posts
     if selected == 'All':
-        cats = db.execute('SELECT title, text, category FROM entries')
+        cats = db.execute('SELECT id, title, text, category FROM entries')
 
     # otherwise show posts with specific category
     else:
-        cats = db.execute('SELECT title, text, category FROM entries WHERE category = ?', (selected,))
+        cats = db.execute('SELECT id, title, text, category FROM entries WHERE category = ?', (selected,))
 
 
     entries = cats.fetchall()
@@ -122,12 +122,25 @@ def delete_post():
 
 @app.route('/edit', methods=['POST'])
 def edit_post():
+    post_id = request.form.get('id')
+    title = request.form.get('title')
+    category = request.form.get('category')
+    text = request.form.get('text')
+
+    return render_template("edit.html", post_id=post_id, title=title, category=category, text=text)
+@app.route('/update', methods=['POST'])
+def update_post():
     db = get_db()
-    old_title = request.form.get('old_title')
+
+    post_id = request.form.get('id')
     new_title = request.form.get('new_title')
     new_text = request.form.get('new_text')
     new_category = request.form.get('new_category')
-    db.execute('UPDATE entries SET title = ?, text = ?, category = ? WHERE title = ?',
-               (new_title, new_text, new_category, old_title))
+    db.execute('UPDATE entries SET title = ?, text = ?, category = ? WHERE id = ?',
+               (new_title, new_text, new_category, post_id))
     db.commit()
-    return redirect(url_for('show_entries'))
+
+    entries = db.execute('SELECT title, text, category FROM entries ORDER BY id DESC').fetchall()
+
+    flash("Post updated!")
+    return render_template('show_entries.html', entries=entries)
