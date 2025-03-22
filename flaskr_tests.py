@@ -31,6 +31,17 @@ class FlaskrTestCase(unittest.TestCase):
         assert b'<strong>HTML</strong> allowed here' in rv.data
         assert b'A category' in rv.data
 
+    def test_share_post(self):
+        rv = self.app.post('/add', data=dict(
+            title = "Test title",
+            category = "Test Category",
+            text = "Test Text"
+        ), follow_redirects=True)
+
+        assert b'Test Title' in rv.data
+        assert b'Test Category' in rv.data
+        assert b'Test Text' in rv.data
+
     def test_edit_post(self):
         rv = self.app.post('/edit', data=dict(
             old_title = "Old title",
@@ -41,12 +52,12 @@ class FlaskrTestCase(unittest.TestCase):
             new_category = "New category"
         ), follow_redirects = True)
 
-        assert old_title not in rv.data
-        assert old_text not in rv.data
-        assert old_category not in rv.data
-        assert new_title in rv.data
-        assert new_text in rv.data
-        assert new_category in rv.data
+        assert b"Old title" not in rv.data
+        assert b"Old text" not in rv.data
+        assert b"Old category" not in rv.data
+        assert b"New Title" in rv.data
+        assert b"New text" in rv.data
+        assert b"New category" in rv.data
 
 if __name__ == '__main__':
     unittest.main()
